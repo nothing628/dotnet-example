@@ -240,3 +240,6 @@ Kemudian buka file [Views/Home/Index.cshtml](/Views/Home/Index.cshtml) dan paste
 ```
 
 ## 5. Test running
+Pastikan perintah `npm run serve` berjalan dan untuk memulai project dotnet tinggal tekan F5 di Visual Studio Code. Setelah menekan tombol tersebut, browser akan terbuka dan hasilnya seperti ini
+![Final](/docs/6.png)
+Jika hasilnya tidak seperti itu, berarti ada langkah yg lupa atau contoh ini yg salah. Oke gitu aja contoh penggabungan .NET Core dan VueJs. Klo males bikin dari awal, tinggal download aja dari sini, :laughing: :laughing: :laughing:
