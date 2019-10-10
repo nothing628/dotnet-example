@@ -4,6 +4,8 @@
 Cara buat project dotnet seperti biasa pakai `dotnet new`. Ini perintah yg dipake di project ini :
 
 ```
+mkdir dotnet-example
+cd dotnet-example
 dotnet new mvc
 ```
 
@@ -31,7 +33,7 @@ Langsung lihat aja di [sini](/.gitignore)
 
 Alasannya, `vue create` yg tadi dijalankan akan membuat folder git, jadi sampai step ini git sudah terpasang dan bisa mulai commit. _(jangan pernah jalankan perintah `git init`. step ini bakal pasang otomatis)_
 
-## 3. Add VueJs to page
+## 3. Penjelasan `package.json` dan `vue.config.js`
 
 Sebelum menyatukan VueJs ke dalam halaman html, akan ada file bernama [package.json](/package.json) yg isinya seperti dibawah ini.
 ```json
@@ -67,4 +69,17 @@ Untuk menjalankan dapat menggunakan perintah `npm run <perintah>`
 
 * `npm run serve` dijalankan pada tahap development
 * `npm run build` dijalankan ketika ingin release ke server
+
+Selanjutnya adalah file [vue.config.js](/vue.config.js). Ini harus __dibuat secara manual__ di root folder project nya. Isi dari file ini adalah :
+
+```js
+module.exports = {
+    outputDir: 'wwwroot/vue',
+    filenameHashing: false,
+}
+```
+
+Fungsi dari file ini adalah mengarahkan hasil build vuejs kedalam folder `wwwroot/vue`. Project dotnet yg berbasis mvc biasanya akan menyimpan file asset seperti js dan css di dalam folder `wwwroot`. jadi supaya VueJs dapat di masukkan kedalam html, maka hasil compile VueJs akan ditempatkan di folder `wwwroot/vue`.
+
+Setelah menambahkan file [vue.config.js](/vue.config.js) dan menjalankan perintah `npm run build`, harusnya folder `wwwroot/vue` akan terbentuk dengan sendirinya.
 
