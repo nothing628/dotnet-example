@@ -76,6 +76,10 @@ Selanjutnya adalah file [vue.config.js](/vue.config.js). Ini harus __dibuat seca
 module.exports = {
     outputDir: 'wwwroot/vue',
     filenameHashing: false,
+    crossorigin: "anonymous",
+    devServer: {
+        https: true
+    }
 }
 ```
 
@@ -83,3 +87,156 @@ Fungsi dari file ini adalah mengarahkan hasil build vuejs kedalam folder `wwwroo
 
 Setelah menambahkan file [vue.config.js](/vue.config.js) dan menjalankan perintah `npm run build`, harusnya folder `wwwroot/vue` akan terbentuk dengan sendirinya.
 
+## 4. Add VueJs to ASP Views
+
+Jalankan perintah `npm run serve` untuk memulai VueJs. berikut penampakan dari perintah tersebut :
+![Run](/docs/5.png)
+Akan terlihat ada 2 alamat, `Local` dan `Network` salin halaman network tersebut. Lalu buka [Views/Shared/_Layout.cshtml](/Views/Shared/_Layout.cshtml). Akan terlihat seperti berikut
+
+```cshtml
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ASPCoba</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ASPCoba</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - ASPCoba - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+```
+Lalu pastekan sebelum memasuki @RenderSection
+```cshtml
+<environment exclude="Development">
+    <script src="~/vue/js/chunk-vendors.js"></script>
+    <script src="~/vue/js/app.js"></script>
+</environment>
+
+<environment include="Development">
+    <script src="https://10.107.206.178:8080/app.js"></script>
+</environment>
+```
+dan pastekan kode berikut setelah tag link site.css
+```cshtml
+<environment exclude="Development">
+    <link rel="stylesheet" href="~/vue/css/app.css" />
+</environment>
+```
+Sehingga file _Layout.cshtml tersebut terlihat seperti berikut
+```cshtml
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ASPCoba</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/vue/css/app.css" />
+    </environment>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ASPCoba</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - ASPCoba - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <environment exclude="Development">
+        <script src="~/vue/js/chunk-vendors.js"></script>
+        <script src="~/vue/js/app.js"></script>
+    </environment>
+    
+    <environment include="Development">
+        <script src="https://10.107.206.178:8080/app.js"></script>
+    </environment>
+    
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+```
+Kemudian buka file [Views/Home/Index.cshtml](/Views/Home/Index.cshtml) dan pastekan `<div id="app"></div>` pada bagian pada paling bawah file. Sehingga terlihat seperti berikut :
+```cshtml
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div id="app"></div>
+```
+
+## 5. Test running
