@@ -29,4 +29,6 @@ Setelah menjalankan perintah `vue create .` akan ditanya beberapa pertanyaan (yg
 Setelah itu akan perlu beberapa perbaikan terhadap file `.gitignore` __(Penting!)__.
 Langsung lihat aja di [.gitignore](/.gitignore)
 
+Alasannya, `vue create` yg tadi dijalankan akan membuat folder git, jadi sampai step ini git sudah terpasang dan bisa mulai commit. _(jangan pernah jalankan perintah `git init`. step ini bakal pasang otomatis)_
+
 ## 3. Add VueJs to page
