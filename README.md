@@ -1,5 +1,15 @@
 # Integrasi Vue dan .Net Core
 
+## Persiapan
+
+Sebelum memulai project, ada beberapa tools yang harus diinstall terlebih dahulu, yaitu
+* [Dotnet Core v3](https://dotnet.microsoft.com/download/dotnet-core/3.0)
+* NodeJS [v10](https://nodejs.org/dist/v10.16.3/node-v10.16.3-x64.msi) __atau__ [v12](https://nodejs.org/dist/v12.11.1/node-v12.11.1-x64.msi)
+* [Vue Cli](https://cli.vuejs.org/guide/installation.html) *Cara untuk install di Windows harusnya sama aja*
+* [Git](https://git-scm.com/) *Opsional*
+
+Setelah menginstall aplikasi tadi, bisa memulai project dotnet.
+
 ## 1. Create project
 Cara buat project dotnet seperti biasa pakai `dotnet new`. Ini perintah yg dipake di project ini :
 
@@ -10,13 +20,6 @@ dotnet new mvc
 ```
 
 ## 2. Add VueJs to Project
-Sebelum menambahkan vuejs kedalam project, ada yg harus di-install terlebih dahulu!
-
-* NodeJS [v10](https://nodejs.org/dist/v10.16.3/node-v10.16.3-x64.msi) __atau__ [v12](https://nodejs.org/dist/v12.11.1/node-v12.11.1-x64.msi)
-* [Vue Cli](https://cli.vuejs.org/guide/installation.html) *Cara untuk install di Windows harusnya sama aja*
-
-Setelah menginstall aplikasi tadi, bisa di mulai menggabungkan VueJs kedalam project.
-Jalankan installer NodeJS terlebih dahulu baru kemudian,
 Jalankan perintah pada __Terminal__ atau __CMD__ di lokasi yg sama ketika menjalankan perintah `dotnet new mvc`
 ```
 npm install -g @vue/cli
@@ -31,7 +34,7 @@ Setelah menjalankan perintah `vue create .` akan ditanya beberapa pertanyaan (yg
 Setelah itu akan perlu beberapa perbaikan terhadap file `.gitignore` __(Penting!)__.
 Langsung lihat aja di [sini](/.gitignore)
 
-Alasannya, `vue create` yg tadi dijalankan akan membuat folder git, jadi sampai step ini git sudah terpasang dan bisa mulai commit. _(jangan pernah jalankan perintah `git init`. step ini bakal pasang otomatis)_
+Perintah `vue create` yg tadi dijalankan akan secara otomatis juga menjalankan `git init`, jadi sampai step ini git sudah terpasang dan bisa mulai commit.
 
 ## 3. Penjelasan `package.json` dan `vue.config.js`
 
