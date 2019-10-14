@@ -36,9 +36,36 @@ Langsung lihat aja di [sini](/.gitignore)
 
 Perintah `vue create` yg tadi dijalankan akan secara otomatis juga menjalankan `git init`, jadi sampai step ini git sudah terpasang dan bisa mulai commit.
 
-## 3. Penjelasan `package.json` dan `vue.config.js`
+## 3. Penjelasan `package.json` dan `vue.config.js` dan `main.js`
+File `main.js` terletak di folder `src/main.js`. Ini adalah file utama yang akan di baca oleh VueJs pertama kali. Isinya seperti dibawah ini.
 
-Sebelum menyatukan VueJs ke dalam halaman html, akan ada file bernama [package.json](/package.json) yg isinya seperti dibawah ini.
+```javascript
+import Vue from 'vue'
+import App from './App.vue'
+import store from './store'
+
+Vue.config.productionTip = false
+
+new Vue({
+  store,
+  render: h => h(App)
+}).$mount('#app')
+```
+Sebelum lanjut kita ingin supaya Vue dapat menampilkan custom tag yang kita daftarkan, maka kita perlu ubah file ini menjadi seperti berikut:
+```javascript
+import Vue from 'vue'
+import App from './App'       // Import component App
+import store from './store'
+
+Vue.component('app', App)     // Datar tag <app> yg akan dicompile oleh vue menjadi component App
+Vue.config.productionTip = false
+
+new Vue({
+  el: '#app',
+  store
+})
+```
+Selanjutnya file bernama [package.json](/package.json) yg isinya seperti dibawah ini.
 ```json
 {
   "name": "dotnet-example",
