@@ -1,10 +1,11 @@
 import Vue from 'vue'
-import App from './App.vue'
+import Test from './components/Test'
 import store from './store'
 
+Vue.component('test', Test)
 Vue.config.productionTip = false
 
 new Vue({
-  store,
-  render: h => h(App)
-}).$mount('#app')
+  el: '#app',
+  store
+})
