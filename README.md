@@ -75,6 +75,7 @@ Selanjutnya adalah file [vue.config.js](/vue.config.js). Ini harus __dibuat seca
 ```js
 module.exports = {
     outputDir: 'wwwroot/vue',
+    runtimeCompiler: true,
     filenameHashing: false,
     crossorigin: "anonymous",
     devServer: {
