@@ -240,7 +240,9 @@ Kemudian buka file [Views/Home/Index.cshtml](/Views/Home/Index.cshtml) dan paste
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-<div id="app"></div>
+<div id="app">
+    <app></app>
+</div>
 ```
 
 ## 5. Test running
